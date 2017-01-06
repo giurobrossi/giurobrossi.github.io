@@ -2,11 +2,14 @@
     <head>
         <script>
         // Registrazione Service Worker
-        navigator.serviceWorker.register('/worker.js').then(function(reg) {
-        console.log(':-)', reg);
-        }, function(err) {
-        console.log('ಠ_ಠ', err);
-        });
+        navigator.serviceWorker.register('/worker.js'), {scope: '/path-tobe-cached/'}.then(
+            function(reg) {
+                console.log(':-)', reg);
+            }, 
+            function(err) {
+                console.log(':-(', err);
+            }
+        );
         </script>
     </head>
     <body>
