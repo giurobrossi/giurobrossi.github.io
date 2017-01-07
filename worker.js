@@ -16,11 +16,12 @@ self.addEventListener('activate', function(event) {
 
 
 self.addEventListener('fetch', function(event) {
-	console.log("This is an offline resource.");
 	//event.respondWith(new Response("Hijacked Site!!"));
 	event.respondWith(
 		caches.match(event.request).then(function(response) {
 		  return response || fetch(event.request);
-		})
+		}).catch(function(){
+			return caches.match('/offline.html');
+		});
   	);
 });
