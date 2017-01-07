@@ -22,6 +22,6 @@ self.addEventListener('fetch', function(event) {
 		  return response || fetch(event.request);
 		}).catch(function(){
 			return caches.match('/offline.html');
-		});
+		})
   	);
 });
