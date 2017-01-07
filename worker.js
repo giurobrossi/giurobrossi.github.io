@@ -4,7 +4,7 @@ self.addEventListener('install', function(event) {
   console.log("SW installed");
   caches.open('cache-v1').then(function(cache) {
   	return cache.addAll([
-  		'/path-tobe-cached/'
+  		'/logo_ucresearch.png'
   		]);
   })
 });
