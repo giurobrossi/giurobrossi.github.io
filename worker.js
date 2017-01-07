@@ -2,13 +2,25 @@ console.log("SW startup");
 
 self.addEventListener('install', function(event) {
   console.log("SW installed");
+  caches.open('cache-v1').then(function(cache) {
+  	return cache.addAll([
+  		'/path-tobe-cached/'
+  		]);
+  })
 });
+
 
 self.addEventListener('activate', function(event) {
   console.log("SW activated");
 });
 
+
 self.addEventListener('fetch', function(event) {
-  console.log("Caught a fetch!");
-  event.respondWith(new Response("Hijacked Site!!"));
+	console.log("This is an offline resource.");
+	//event.respondWith(new Response("Hijacked Site!!"));
+	event.respondWith(
+		caches.match(event.request).then(function(response) {
+		  return response || fetch(event.request);
+		})
+  	);
 });
