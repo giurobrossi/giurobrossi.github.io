@@ -5,15 +5,15 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/worker.js').then(
                 function(reg) {
-                    console.log(':-)', reg);
+                    console.log('SW Registered :-)', reg);
                 }, 
                 function(err) {
-                    console.log(':-(', err);
+                    console.log('SW Not Registered :-(', err);
                 }
             );
         }
         else {
-            console.log('Service worker not supported');
+            console.log('SW Not Supported');
         }
         </script>
     </head>
