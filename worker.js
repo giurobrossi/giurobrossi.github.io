@@ -1,5 +1,9 @@
 var CACHE_NAME = 'cache-db-v1';
-var CACHE_URLS = ['/no_connection.html','/offline_logo.png'];
+var CACHE_URLS = ['/no_connection.html',
+									'/offline_logo.png',
+									'/img1_cache.jpg',
+									'/img2_cache.jpg',
+									'/img3_cache.jpg'];
 
 /**
  * Si mette in ascolto dell'evento INSTALL del SW, ma esso non scatterà finchè:
