@@ -62,3 +62,37 @@ self.addEventListener('fetch', function(event) {
 		})
   );
 });
+
+
+/**
+ * Questo script usa l'approccio "Cache first, falling back to Network":
+ * --------------------------------------------------------------------
+ * self.addEventListener('fetch', function(event) {
+ *  event.respondWith(
+ *   caches.match(event.request).then(function(cachedResponse) {
+ *     return cachedResponse || fetch(event.request);
+ *   })
+ * );
+ * });
+ * 
+ Questo va bene nel caso di risorse cachate che non cambiano spesso lato server. Se invece il tasso di aggiornamento 
+ di tali risorse è alto, occorrono approcci più sofisticati. 
+ 
+ Il seguente prevede che venga servito sempre prima il contenuto della cache, scaricando il file dal web e
+ inserendolo nella cache (asincronicamente) per essere letto la volta seguente dalla cache.
+
+	self.addEventListener('fetch', function(event) {
+		event.respondWith(
+				cache.match(event.request).then(function(cachedResponse) {
+					var fetchPromise = fetch(event.request).then(function(networkResponse) {
+						cache.put(event.request, networkResponse.clone());
+						return networkResponse;
+					})
+					return cachedResponse || fetchPromise;
+				})
+		);
+	}); 
+
+*/
+
+
