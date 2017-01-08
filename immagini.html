@@ -11,35 +11,7 @@
                 max-width: 100%;
                 max-height: 100%;
             }
-        </style>  
-        <script>
-            function initialiseState() {
-                if (Notification.permission !== 'granted') {
-                    console.log('The user has not granted the notification permission.');
-                    return;
-                } else if (Notification.permission === 'blocked') {
-                /* the user has previously denied push. Can't reprompt. */
-                } 
-                else {
-                    /* show a prompt to the user */
-                }
-
-                // Use serviceWorker.ready so this is only invoked
-                // when the service worker is available.
-                navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-                    serviceWorkerRegistration.pushManager.getSubscription()
-                    .then(function(subscription) {
-                        if (!subscription) {
-                        // Set appropriate app states.
-                        return;
-                        }
-                    })
-                    .catch(function(err) {
-                        console.log('Error during getSubscription()', err);
-                    });
-                });
-    }
-        </script>      
+        </style>      
     </head>
     <body>
         <div class='grid_element'>
@@ -47,9 +19,6 @@
         </div>
         <div class='grid_element'>
             <img src='logo_nocache.png' alt=''>
-        </div>
-        <div>
-            <button onclick="initialiseState()">Sottoscrivi Push</button>
         </div>
     </body>
 </html>
