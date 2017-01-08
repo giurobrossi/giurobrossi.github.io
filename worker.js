@@ -1,6 +1,6 @@
 var CACHE_NAME = 'cache-db-v1';
 var CACHE_URLS = ['/no_connection.html',
-									'/offline_logo.png',
+									'/logo_cache.png',
 									'/img1_cache.jpg',
 									'/img2_cache.jpg',
 									'/img3_cache.jpg'];
