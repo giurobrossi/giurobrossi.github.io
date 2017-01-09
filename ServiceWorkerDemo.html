@@ -33,11 +33,13 @@
     <body>
         <h1>Service Workers</h1>
         <h2>Descrizione</h2>
-            <p>
-                Consiste in un Proxy locale al browser, con una gestione applicativa della cache degli elementi del sito.<br>
-                Lo Scope di un ServiceWorker è definito dalla posizione del file worker.js nel sito, e dalle eventuali sottodirectory.<br>
-                Possiamo inoltre definire uno Scope che sia una restrizione dello scope standard di cui sopra (non un'estensione quindi).<br>
-                Possiamo avere 1! ServiceWorker per Scope: questo per evitare sovrapposizioni tra gli artifact cachabili da ciascuno di essi.<br>
+            <ul>
+                <li>Consiste in un Proxy locale al browser, con una gestione applicativa della cache degli elementi del sito.
+                <li>Lo Scope di un ServiceWorker è definito dalla posizione del file worker.js nel sito, e dalle eventuali sottodirectory.
+                <li>Possiamo inoltre definire uno Scope che sia una restrizione dello scope standard di cui sopra (non un'estensione quindi).
+                <li>Il Service Worker è in grado di intercettare tutte le chiamate ad URL appartenenti allo Scope a cui appartiene.
+                <li>Può esistere 1! ServiceWorker per Scope: per evitare sovrapposizioni tra gli artifact cachabili da ciascuno di essi.
+                <li>Ogni modifica del file worker.js comporta una nuova registrazione del Service Worker.
             </p>
         <h2>Ciclo di vita</h2>
 

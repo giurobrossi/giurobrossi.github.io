@@ -11,7 +11,7 @@ var CACHE_URLS = ['/no_connection.html',
  * 2. I file dichiarati nell'array 'urlToBeCached' non siano stati scaricati dal web e immagazzinati nella cache locale.
  * 
  * NB: il processo di fetch è asincrono, per cui occorre usare il barrier 'waitUntil' per attendere che tutti i file 
- * siano stati scaricati.
+ * siano stati scaricati..
  */
 self.addEventListener('install', function(event) {
   console.log('SW Install Event Captured, with cache version: ' + CACHE_NAME);
