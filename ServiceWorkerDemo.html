@@ -32,12 +32,13 @@
     </head>
     <body>
         <h1>Service Workers</h1>
+            <p>Consiste in un Proxy locale al browser, con una gestione applicativa della cache degli elementi del sito.</p>
         <h2>Descrizione</h2>
             <ul>
-                <li>Consiste in un Proxy locale al browser, con una gestione applicativa della cache degli elementi del sito.
                 <li>Lo Scope di un ServiceWorker è definito dalla posizione del file worker.js nel sito, e dalle eventuali sottodirectory.
-                <li>Possiamo inoltre definire uno Scope che sia una restrizione dello scope standard di cui sopra (non un'estensione quindi).
-                <li>Il Service Worker è in grado di intercettare tutte le chiamate ad URL appartenenti allo Scope a cui appartiene.
+                <li>Possiamo inoltre definire, in fase di registrazione, uno Scope che sia una restrizione dello scope standard di cui sopra 
+                    (non un'estensione quindi).
+                <li>Il Service Worker è in grado di intercettare tutte le chiamate ad URL appartenenti allo Scope a cui è associato.
                 <li>Può esistere 1! ServiceWorker per Scope: per evitare sovrapposizioni tra gli artifact cachabili da ciascuno di essi.
                 <li>Ogni modifica del file worker.js comporta una nuova registrazione del Service Worker.
                 <li>E' consentito l'utilizzo solo in HTTPS, poiché potenzialmente può essere usato per dei MITM attack
@@ -53,6 +54,19 @@
                 </li>La REGISTRAZIONE del Service Worker si considera ultimata solo dopo che lo stato arriva ad INSTALLED.
                 <li>Se esiste un Service Worker già registrato per lo stesso Scope, lo stato da INSTALLED passa a WAITING, in quanto può esserci 1! 
                     Service Worker per Scope.
+                    <pre>
+                        <code>
+                            self.addEventListener('install', function(event) {
+                                console.log('SW Install Event Captured, with cache version: ' + CACHE_NAME);
+                                    event.waitUntil(
+                                        caches.open(CACHE_NAME).then(function(cache) {
+                                            return cache.addAll(CACHE_URLS);
+                                        })
+                                    );
+                                }
+                            );
+                        </code>
+                    </pre>
                 <li><b>ACTIVATE:</b> questo evento comprende gli stati ACTIVATING e ACTIVATED. Si utilizza di solito per eliminare le cache prodotte da versioni 
                     precedenti del Service Worker.
                 <li><b>FETCH:</b> E' l'evento che scatta ogniqualvolta viene intercettata una chiamata ad un URL appastenente allo Scope del Service Worker.
