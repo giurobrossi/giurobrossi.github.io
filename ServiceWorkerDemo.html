@@ -55,22 +55,55 @@
                 <li>Se esiste un Service Worker già registrato per lo stesso Scope, lo stato da INSTALLED passa a WAITING, in quanto può esserci 1! 
                     Service Worker per Scope.
 <pre>
-    <code>
-        self.addEventListener('install', function(event) {
-            console.log('SW Install Event Captured, with cache version: ' + CACHE_NAME);
-                event.waitUntil(
-                    caches.open(CACHE_NAME).then(function(cache) {
-                        return cache.addAll(CACHE_URLS);
-                    })
-                );
-            }
+<code>
+self.addEventListener('install', function(event) {
+        event.waitUntil(
+            caches.open(CACHE_NAME).then(function(cache) {
+                return cache.addAll(CACHE_URLS);
+            })
         );
-    </code>
+    }
+);
+</code>
 </pre>
                 <li><b>ACTIVATE:</b> questo evento comprende gli stati ACTIVATING e ACTIVATED. Si utilizza di solito per eliminare le cache prodotte da versioni 
                     precedenti del Service Worker.
+<pre>
+<code>
+self.addEventListener('activate', function(event) {
+    event.waitUntil(
+        caches.keys().then(function(cacheNames) {
+            return Promise.all(
+                cacheNames.map(function(cacheName) {
+                    if (CACHE_NAME !== cacheName && cacheName.startsWith('cache-db')) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        })
+    );
+});
+</code>
+</pre>                    
                 <li><b>FETCH:</b> E' l'evento che scatta ogniqualvolta viene intercettata una chiamata ad un URL appastenente allo Scope del Service Worker.
+<pre>
+<code>
+self.addEventListener('fetch', function(event) {
+	var requestURL = new URL(event.request.url);
+	event.respondWith(
+		caches.match(event.request, {ignoreSearch: true}).then(function(response) {
+		    return response || fetch(event.request);
+		}).catch(function(){
+			return caches.match('/no_connection.html');
+		})
+    );
+});
+</code>
+</pre>                                    
             </ul>
+            <br>
         <button onclick="window.location='http://giurobrossi.github.io/immagini.html'">VAI ALLA DEMO</button>
     </body>
 </html>
+
+
