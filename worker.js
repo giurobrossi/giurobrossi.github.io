@@ -38,6 +38,7 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
+					// Elimina le cache precedenti ad ogni aggiornamento del SW.
           if (CACHE_NAME !== cacheName && cacheName.startsWith('cache-db')) {
             return caches.delete(cacheName);
           }
