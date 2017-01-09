@@ -27,10 +27,17 @@
         </script>
     </head>
     <body>
-        <h3>
-            <p>Service Workers LifeCycle</p>
+        <h1>Service Workers</h1>
+        <h2>Descrizione</h2>
+            <p>
+                Consiste in un Proxy locale al browser, con una gestione applicativa della cache degli elementi del sito.<br>
+                Lo Scope di un ServiceWorker è definito dalla posizione del file worker.js nel sito, e dalle eventuali sottodirectory.<br>
+                Possiamo definire esplicitamente uno Scope che sia una restrizione dello scope standard di cui sopra (non un'estensione quindi).<br>
+                Possiamo avere 1! ServiceWorker per Scope: questo per evitare sovrapposizioni tra gli artifact cachabili da ciascuno di essi.<br>
+            </p>
+        <h2>Ciclo di vita</h2>
+        
 
-        </h3>
         <button onclick="window.location='http://giurobrossi.github.io/immagini.html'">VAI ALLA DEMO</button>
     </body>
 </html>
