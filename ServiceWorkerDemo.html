@@ -89,13 +89,13 @@ self.addEventListener('activate', function(event) {
 <pre>
 <code>
 self.addEventListener('fetch', function(event) {
-	var requestURL = new URL(event.request.url);
-	event.respondWith(
-		caches.match(event.request, {ignoreSearch: true}).then(function(response) {
+    var requestURL = new URL(event.request.url);
+    event.respondWith(
+	    caches.match(event.request, {ignoreSearch: true}).then(function(response) {
 		    return response || fetch(event.request);
-		}).catch(function(){
-			return caches.match('/no_connection.html');
-		})
+        }).catch(function(){
+		    return caches.match('/no_connection.html');
+        })
     );
 });
 </code>
