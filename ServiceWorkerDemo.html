@@ -40,9 +40,16 @@
                 <li>Il Service Worker è in grado di intercettare tutte le chiamate ad URL appartenenti allo Scope a cui appartiene.
                 <li>Può esistere 1! ServiceWorker per Scope: per evitare sovrapposizioni tra gli artifact cachabili da ciascuno di essi.
                 <li>Ogni modifica del file worker.js comporta una nuova registrazione del Service Worker.
-            </p>
+                <li>E' consentito l'utilizzo solo in HTTPS, poiché potenzialmente può essere usato per dei MITM attack
+            </ul>
         <h2>Ciclo di vita</h2>
-
+            <p>Consideriamo gli eventi funzionali intercettabili applicativamente, prima e dopo la registrazione del Service Worker.
+            <ul>
+                <li>INSTALL: scatta quando avvio la registrazione del Service Worker e parte il caching degli artifact dichiarati nel file worker.js<br>
+                    Come evento funzionale INSTALL comprende gli STATI 'INSTALLING'' e 'INSTALLED'. Durante la registrazione ed il caching degli artifact,<br>
+                    lo stato rimane INSTALLING, per passare ad INSTALLED alla fine deel processo. 
+                <li>Il caching delle risorse dichiarate avviene in modalità asincrona, usando un pattern di BARRIER: ovvero vengono scaricati tutti gli<br>
+                    artifact in modo mutuamente indipendente, fino a che anche il più grande non venga cachato.
 
         <button onclick="window.location='http://giurobrossi.github.io/immagini.html'">VAI ALLA DEMO</button>
     </body>
