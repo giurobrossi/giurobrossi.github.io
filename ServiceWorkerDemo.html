@@ -19,6 +19,7 @@
             #gotodemo {
                 font-family: 'UniCredit Bold';
                 font-size: 150%;
+                margin-left: 25%;
             }
         </style>
         <script>
@@ -50,7 +51,7 @@
                 <li>Può esistere 1! ServiceWorker per Scope: per evitare sovrapposizioni tra gli artifact cachabili da ciascuno di essi.
                 <li>Ogni modifica del file worker.js comporta una nuova registrazione del Service Worker.
                 <li>E' consentito l'utilizzo solo in HTTPS, poiché potenzialmente può essere usato per dei MITM attack
-            </ul>
+        </ul>
         <h2>Ciclo di vita</h2>
             <p>Consideriamo gli eventi funzionali intercettabili applicativamente, prima e dopo la registrazione del Service Worker.
             <ul>
@@ -108,11 +109,9 @@ self.addEventListener('fetch', function(event) {
 });
 </code>
 </pre>                                    
-            </ul>
-            <br>
-            <center>
-                <button id='gotodemo' onclick="window.location='http://giurobrossi.github.io/immagini.html'">VAI ALLA DEMO</button>
-            </center>
+        </ul>
+        <br>
+        <button id='gotodemo' onclick="window.location='http://giurobrossi.github.io/immagini.html'">VAI ALLA DEMO</button>
     </body>
 </html>
 
