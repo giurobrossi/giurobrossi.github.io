@@ -11,7 +11,7 @@
             }
             body { font-family: 'UniCredit Regular'; }
             h1, h2, h3 { font-family: 'UniCredit Bold'; }
-
+            .codice {background: #cccccc; }
         </style>
         <script>
         // Registrazione Service Worker
@@ -54,7 +54,7 @@
                 </li>La REGISTRAZIONE del Service Worker si considera ultimata solo dopo che lo stato arriva ad INSTALLED.
                 <li>Se esiste un Service Worker già registrato per lo stesso Scope, lo stato da INSTALLED passa a WAITING, in quanto può esserci 1! 
                     Service Worker per Scope.
-<pre>
+<pre class='codice'>
 <code>
 self.addEventListener('install', function(event) {
         event.waitUntil(
