@@ -11,7 +11,7 @@
             }
             body { font-family: 'UniCredit Regular'; }
             h1, h2, h3 { font-family: 'UniCredit Bold'; }
-            .codice {background: #cccccc; }
+            .codice {background: #dddddd; }
         </style>
         <script>
         // Registrazione Service Worker
@@ -68,7 +68,7 @@ self.addEventListener('install', function(event) {
 </pre>
                 <li><b>ACTIVATE:</b> questo evento comprende gli stati ACTIVATING e ACTIVATED. Si utilizza di solito per eliminare le cache prodotte da versioni 
                     precedenti del Service Worker.
-<pre>
+<pre class='codice'>
 <code>
 self.addEventListener('activate', function(event) {
     event.waitUntil(
@@ -86,7 +86,7 @@ self.addEventListener('activate', function(event) {
 </code>
 </pre>                    
                 <li><b>FETCH:</b> E' l'evento che scatta ogniqualvolta viene intercettata una chiamata ad un URL appastenente allo Scope del Service Worker.
-<pre>
+<pre class='codice'>
 <code>
 self.addEventListener('fetch', function(event) {
     var requestURL = new URL(event.request.url);
